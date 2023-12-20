@@ -189,6 +189,7 @@ FROM(SELECT TEAM,YEAR(DATE) AS YEAR
 GROUP BY TEAM;
 ```
 
+![](Seas_pld.PNG)
 
 - Minutes played per game and total minutes played:
 ```sql
@@ -198,6 +199,8 @@ FROM JORDAN_STAT
 GROUP BY YEAR(DATE) 
 ORDER BY SEASON ASC;
 ```
+
+![](Minutes_played.PNG)
 
 - Longevity of peak performance, indicated by years with high statistical achievements:
 ```sql
@@ -218,3 +221,4 @@ HAVING
 ORDER BY
     SEASON ASC;
 ```
+![](Longevity_of_peak_performance.PNG)
