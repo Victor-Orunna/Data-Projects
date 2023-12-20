@@ -1,4 +1,5 @@
 # NBA CAREER ANALYSIS OF MICHAEL JORDAN
+![](Michael-Jordan-Transparent-PNG.png)
 ## PROFILE
 Michael Jeffrey Jordan (born February 17, 1963), also known by his initial MJ, is an American former professional basketball player. He played fifteen seasons in the National Basketball Association (NBA) from 1984 to 2003, winning six NBA championship titles with the Chicago Bulls. His profile on the official NBA website states that "by acclamation, Michael Jordan is the greatest basketball player of all time." ~ Wikipaedia
 
@@ -187,6 +188,7 @@ FROM(SELECT TEAM,YEAR(DATE) AS YEAR
 	FROM JORDAN_STAT)A
 GROUP BY TEAM;
 ```
+
 
 - Minutes played per game and total minutes played:
 ```sql
