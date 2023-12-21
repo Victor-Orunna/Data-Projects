@@ -221,4 +221,37 @@ HAVING
 ORDER BY
     SEASON ASC;
 ```
-![](Longevity_of_peak_performance.PNG)
+![](Longevity.PNG)
+
+## Scoring and Contribution
+The scoring and contribution significance of an NBA player are crucial factors that define their impact on games.
+
+- Scoring consistency over different periods of his career (prime years, later years, etc.):
+```sql
+SELECT
+    YEAR(DATE) AS SEASON,
+    CASE
+        WHEN YEAR(DATE) BETWEEN 1984 AND 1996 THEN 'Prime Years'
+        ELSE 'Later Years'
+    END AS CAREER_PERIOD,
+	COUNT(GAME) AS MATCHES_PLAYED,
+	SUM(FIELD_GOALS) AS SUM_GOALS,
+	AVG(FIELD_GOALS) AS AVG_GOALS,
+	SUM(POINTS) AS TOTAL_POINTS,
+    AVG(POINTS) AS AVG_POINTS
+FROM JORDAN_STAT
+GROUP BY YEAR(DATE)
+ORDER BY SEASON ASC;
+```
+![](Scoring_Consistency)
+
+- Goals Scored Per Season:
+```sql
+SELECT YEAR(DATE) AS SEASON, SUM(FIELD_GOALS) AS GOALS,
+		SUM(FIELD_GOALS_ATTEMPTED) AS GOAL_ATTEMPTS,
+		ROUND(AVG(FIELD_GOALS_PERCENT),2) AS G_xG_RATIO
+FROM JORDAN_STAT
+GROUP BY YEAR(DATE)
+ORDER BY SEASON ASC;
+```
+![](
