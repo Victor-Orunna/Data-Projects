@@ -1,4 +1,4 @@
-# NBA CAREER ANALYSIS OF MICHAEL JORDAN
+# MICHAEL JORDAN NBA CAREER ANALYSIS
 ![](Michael-Jordan-Transparent-PNG.png)
 ## PROFILE
 Michael Jeffrey Jordan (born February 17, 1963), also known by his initial MJ, is an American former professional basketball player. He played fifteen seasons in the National Basketball Association (NBA) from 1984 to 2003, winning six NBA championship titles with the Chicago Bulls. His profile on the official NBA website states that "by acclamation, Michael Jordan is the greatest basketball player of all time." ~ Wikipaedia
@@ -15,6 +15,7 @@ Maven Analytics Data Playground
 
 - SQL (Data Cleaning and Analysis)
 - Power BI (Visualization)
+  - [Power Bi Report](https://app.powerbi.com/groups/me/reports/ef08ddff-6b93-4728-b980-52c9fd1507ef/ReportSection8398155db4c51b18cdea?experience=power-bi)
 
 ## DATA CLEANING AND PREPARATION
 
@@ -223,8 +224,17 @@ ORDER BY
 ```
 ![](Longevity.PNG)
 
-## Scoring and Contribution
-The scoring and contribution significance of an NBA player are crucial factors that define their impact on games.
+### Scoring and Distribution
+The scoring and distribution significance of an NBA player are crucial factors that define their impact on games.
+
+- Points Per Season:
+```sql
+SELECT YEAR(DATE) AS SEASON, SUM(POINTS) AS SEASON_POINT
+FROM JORDAN_STAT 
+GROUP BY YEAR(DATE) 
+ORDER BY SEASON ASC;
+```
+![](Points_per_season.PNG)
 
 - Scoring consistency over different periods of his career (prime years, later years, etc.):
 ```sql
@@ -243,7 +253,7 @@ FROM JORDAN_STAT
 GROUP BY YEAR(DATE)
 ORDER BY SEASON ASC;
 ```
-![](Scoring_Consistency)
+![](Scoring_Consistency.PNG)
 
 - Goals Scored Per Season:
 ```sql
@@ -254,4 +264,107 @@ FROM JORDAN_STAT
 GROUP BY YEAR(DATE)
 ORDER BY SEASON ASC;
 ```
-![](
+![](Goals_per_Season.PNG)
+
+- Win & Loss Against Each Opponent:
+```sql
+SELECT NAME AS OPPONENT, COUNT(NAME) AS MATCHES_PLAYED,
+		COUNT(CASE WHEN MATCH_RESULT = 'WIN' THEN 1 END) AS WINS,
+		COUNT(CASE WHEN MATCH_RESULT = 'LOST' THEN 1 END) AS LOSS
+FROM JORDAN_STAT
+GROUP BY NAME
+ORDER BY WINS DESC;
+```
+![](Stat_against_Opponents.PNG)
+
+### Passing and Playmaking:
+- Assist Per Season:
+Playmaking involves a player's ability to create scoring opportunities for teammates by effectively moving the ball, making accurate passes, and setting up plays.
+```sql
+SELECT YEAR(DATE) AS SEASON, SUM(ASSIST) AS TOTAL_ASSIST
+FROM JORDAN_STAT
+GROUP BY YEAR(DATE) 
+ORDER BY SEASON ASC;
+```
+![](Assist_per_Season.PNG)
+
+- Rebounding Per Season:
+```sql
+SELECT SUM(OFFENSIVE_REBOUND) AS OFFENSIVE_REBOUND, 
+		SUM(DEFENSIVE_REBOUND) AS DEFENSIVE_REBOUND,
+		(SUM(OFFENSIVE_REBOUND)  + SUM(DEFENSIVE_REBOUND)) AS TOTAL_REBOUND
+FROM JORDAN_STAT;
+```
+
+![](Attack.PNG)
+
+### Defensive Impact:
+A player's ability to anticipate passes, disrupt passing lanes, and generate steals and interceptions showcases their defensive awareness and quick reflexes.
+- Steal Per Season:
+```sql
+SELECT YEAR(DATE) AS SEASON, AVG(STEAL) AS AVG_STEAL, SUM(STEAL) AS TOTAL_STEAL
+FROM JORDAN_STAT
+GROUP BY YEAR(DATE) 
+ORDER BY SEASON ASC;
+```
+![](Steal_per_Season.PNG)
+
+- Blocks Per Season:
+```sql
+SELECT YEAR(DATE) AS SEASON, SUM(BLOCKS) AS TOTAL_BLOCKS
+FROM JORDAN_STAT
+GROUP BY YEAR(DATE) 
+ORDER BY SEASON ASC;
+```
+![](Block_per_Season.PNG)
+
+![](Defemsive.PNG)
+
+### Score Cards:
+![](metric_cards.PNG)
+
+## OBSERVATIONS: 
+Let's analyze the provided career statistics for the NBA player:
+
+- **Seasons Played:**
+   - *Assessment:* Playing 17 seasons indicates a remarkable longevity in the NBA. Long careers often signify consistency, durability, and sustained contributions to the sport.
+
+- **Matches Played:**
+   - *Assessment:* With 1072 matches played, the player has a substantial career volume. This suggests a consistent presence on the court, contributing to their team over a large sample of games.
+
+- **Points:**
+   - *Assessment:* Accumulating 32,000 points is a significant scoring achievement. This high point total indicates a prolific scorer with the ability to consistently contribute to their team's offensive output.
+
+- **Goals (Field Goals Made):**
+   - *Assessment:* Making 12,000 field goals showcases the player's scoring efficiency and effectiveness in converting shot attempts. A high field goal count suggests a player with scoring prowess.
+
+- **Minutes Played:**
+   - *Assessment:* Playing a total of 41,000 minutes underscores the player's durability and importance in maintaining a significant on-court presence. High minutes played over a career suggest both skill and physical fitness.
+
+- **Attempted Goals (Field Goals Attempted):**
+   - *Assessment:* Attempting 25,000 field goals indicates an aggressive offensive style. The balance between attempted and made field goals can provide insights into the player's shooting efficiency.
+
+- **Free Throw Ratio:**
+   - *Assessment:* A free throw ratio of 0.83 (83%) suggests a high level of proficiency from the free-throw line. Consistent and accurate free-throw shooting is crucial for a player's overall scoring efficiency.
+
+- **Average Game Score:**
+   - *Assessment:* An average game score of 23.44 reflects a solid all-around performance in individual games. Game score is a comprehensive metric that considers various statistical contributions.
+
+- **3P Goals to x3P Goals Ratio:**
+   - *Assessment:* A 3P goals to x3P goals ratio of 0.37 indicates a preference for two-point field goals over three-pointers. The player may excel in mid-range or inside scoring.
+
+- **Steals Per Game:**
+    - *Assessment:* A steals per game average of 2.35 demonstrates the player's defensive acumen and ability to create turnovers. High steal numbers contribute to defensive impact.
+
+- **Assist-Turnover Ratio:**
+    - *Assessment:* An assist-turnover ratio of 1.93 signifies strong playmaking and decision-making skills. A ratio above 1 indicates that the player is creating more scoring opportunities than committing turnovers.
+
+- **Blocks Per Game:**
+    - *Assessment:* A blocks per game average of 0.83 suggests a moderate shot-blocking ability. While not a primary shot blocker, the player contributes defensively in this aspect.
+
+### **Overall Assessment:**
+   - The player's career statistics suggest an impressive and well-rounded career. Notable strengths include scoring prowess, durability, proficiency in free-throw shooting, playmaking ability, and defensive impact through steals. The well-balanced stat profile indicates a player who significantly contributed on both ends of the court over a lengthy career.
+
+
+
+
