@@ -14,6 +14,7 @@ Maven Analytics Data Playground
 ## TOOLS
 
 - SQL (Data Cleaning and Analysis)
+  - [SQL Query](https://github.com/Victor-Orunna/Data-Projects/blob/main/JORDAN_CAREER_STAT.sql)
 - Power BI (Visualization)
   - [Power Bi Report](https://app.powerbi.com/groups/me/reports/ef08ddff-6b93-4728-b980-52c9fd1507ef/ReportSection8398155db4c51b18cdea?experience=power-bi)
 
